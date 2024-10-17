@@ -1,8 +1,9 @@
 const express = require('express');
-const { request } = require('http');
 const router = express.Router();
 const { getContacts, createContact, getContact, updateContact, deleteContact } = require('../controllers/contactController');
+const auth = require('../middleware/auth');
 
+router.use(auth);
 router.get('/', getContacts).post('/', createContact);
 
 router.get('/:id', getContact)
